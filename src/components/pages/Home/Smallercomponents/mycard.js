@@ -21,7 +21,6 @@ export default function ImgMediaCard(props) {
       navigate('/about',{state:{id:props.id,prize:props.prize,avatar:props.avatar,drinkname:props.drinkname,size:props.size}});
       console.log(props.id);
       dispatch(selectedProduct(props.drinkname));
-      console.log(productName);
   }
 
   return (
