@@ -15,7 +15,6 @@ export default function ImgMediaCard(props) {
 
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const productName = useSelector((state) => state);
 
 
   function get_about_page(){
