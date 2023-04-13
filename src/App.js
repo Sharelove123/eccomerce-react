@@ -7,6 +7,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import Mycart from './components/pages/Cart/mycart';
 
 
 export default class extends Component {
@@ -16,6 +17,7 @@ export default class extends Component {
       <div style={{ background:'#faf4f0' }}>
       <Router>
         <Routes>
+          <Route  path='/mycart' element={< Mycart />}></Route>
           <Route  path='/' element={< HomePage />}></Route>
           <Route  path='/about' element={<About/>}></Route>
           <Route  path='/contact' element={<h1> Contact </h1>}></Route>

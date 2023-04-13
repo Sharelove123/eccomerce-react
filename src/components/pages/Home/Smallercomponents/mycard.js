@@ -7,7 +7,7 @@ import { Box } from '@mui/system';
 import { IconButton, Paper } from '@mui/material';
 import {AiOutlineHeart} from 'react-icons/ai';
 import {useNavigate} from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import { selectedProduct } from '../../../../state/actioncreator/index';
 
 
@@ -18,9 +18,8 @@ export default function ImgMediaCard(props) {
 
 
   function get_about_page(){
-      navigate('/about',{state:{id:props.id,prize:props.prize,avatar:props.avatar,drinkname:props.drinkname,size:props.size}});
-      console.log(props.id);
-      dispatch(selectedProduct(props.drinkname));
+      navigate('/about');
+      dispatch(selectedProduct(props));
   }
 
   return (

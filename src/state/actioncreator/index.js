@@ -26,3 +26,23 @@ export const selectedProduct = (productName) => {
       })
     }
   }
+
+
+  export const addProducttocart = (product) => {
+    return (dispatch) => {
+      dispatch({
+        type: 'addproducttocart',
+        payload: product
+      })
+    }
+  }
+
+
+  export const showSnackbarstate = (flag) => {
+    return (dispatch) => {
+      dispatch({
+        type: 'showsnackbarstate',
+        payload: flag
+      })
+    }
+  }

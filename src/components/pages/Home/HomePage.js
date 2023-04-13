@@ -8,10 +8,6 @@ import Mytab from './Smallercomponents/mytab';
 
 export default class HomePage extends Component {
 
-  totalcount(){
-    console.log('clicked');
-  }
-
   render() {
     return (
         <div >
