@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { useSelector } from 'react-redux';
 
 function Mycrousel() {
-  const selectedProduct = useSelector((state)=>state.prodname)
+  const selectedProduct = useSelector((state)=>state.prodname.selectedProduct)
   return (
     <Carousel >
       <Carousel.Item>

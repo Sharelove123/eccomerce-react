@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating';
 import { useSelector } from 'react-redux';
 
 export default function ProdDetail() {
-  const selectedProduct = useSelector((state)=>state.prodname)
+  const selectedProduct = useSelector((state)=>state.prodname.selectedProduct)
   return (
     <div>
       <Stack direction='horizontal' style={{paddingLeft:18,paddingRight:18,justifyContent:'space-between'}}>

@@ -7,6 +7,8 @@ import {AiOutlineClose} from 'react-icons/ai'
 import { Stack } from '@mui/material';
 import ImgMediaCard from './mycard';
 import BotComp from './bottomcomp';
+import { removeFromCart } from '../../../../state/actioncreator/index';
+import { useDispatch } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -29,9 +31,16 @@ const useStyles = makeStyles({
 });
 
 export default function Proddetailcard(props) {
-  const { avatar, drinkname, id, prize, size } = props;
+  const { avatar, drinkname, id, prize, size,quantity } = props;
   const labelId = `checkbox-list-label-${0}`;
   const classes = useStyles();
+  const dispach = useDispatch()
+
+  function removeproduct(){
+    console.log('deleted...')
+    dispach(removeFromCart(id))
+  }
+
   return (
     <>
       <Grid container spacing={0}>
@@ -45,7 +54,7 @@ export default function Proddetailcard(props) {
                 />
         </center>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={9}>
         <Box className={classes.card} style={{backgroundColor:"#FAF4F0" , height:150, borderRadius:14,marginRight:6}}>
           <Grid container>
             <Grid item xs={6}>
@@ -58,14 +67,17 @@ export default function Proddetailcard(props) {
                   <h3 style={{fontWeight:350,height:30,fontSize:20}}>{size}</h3>
                   <Stack justifyContent="space-between" direction="row" l>
                     <h3 style={{width:-1}}>{prize}</h3>
-                    <BotComp/>
+                    <BotComp 
+                        quantity={quantity}
+                        id={id}
+                    />
                   </Stack>
                 </Stack>
 
             </Grid>
             <Grid item xs={1}>
             <IconButton size='10' className={classes.button} style={{backgroundColor:"#E5E5E5", display: 'flex', justifyContent: 'flex-end'}}>
-              <AiOutlineClose color='white' size={13}/>
+              <AiOutlineClose color='white' size={13} onClick={removeproduct}/>
             </IconButton>
             </Grid>
           </Grid>

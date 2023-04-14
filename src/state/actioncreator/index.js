@@ -1,17 +1,17 @@
-export const depositMoney= (amount) =>{
+export const increaseSelectedProductCount= (product) =>{
     return (dispach)=>{
         dispach({
-            type:'deposit',
-            payload:amount
+            type:'increaseCount',
+            payload:product
         })
     }
 }
 
-export const withdrawMoney= (amount) =>{
+export const decreaseSelectedProductCount= (product) =>{
     return (dispach)=>{
         dispach({
-            type:'withdraw',
-            payload:amount
+            type:'decreaseCount',
+            payload:product
         })
     }
 }
@@ -28,16 +28,6 @@ export const selectedProduct = (productName) => {
   }
 
 
-  export const addProducttocart = (product) => {
-    return (dispatch) => {
-      dispatch({
-        type: 'addproducttocart',
-        payload: product
-      })
-    }
-  }
-
-
   export const showSnackbarstate = (flag) => {
     return (dispatch) => {
       dispatch({
@@ -46,3 +36,41 @@ export const selectedProduct = (productName) => {
       })
     }
   }
+
+
+
+  //new cart creation
+
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+
+export function addToCart(product, quantity) {
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      product,
+      quantity
+    }
+  };
+}
+
+export function removeFromCart(productId) {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: {
+      productId
+    }
+  };
+}
+
+export function updateQuantity(productId, quantity) {
+  return {
+    type: UPDATE_QUANTITY,
+    payload: {
+      productId,
+      quantity
+    }
+  };
+}
+

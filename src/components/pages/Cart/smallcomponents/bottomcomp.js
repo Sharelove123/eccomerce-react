@@ -1,23 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Stack } from '@mui/system'
 import { IconButton } from '@mui/material'
 import { FaPlus, FaMinus } from 'react-icons/fa';
-import { useSelector,useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import {actioncreators} from '../../../../state/index';
+import { useDispatch } from 'react-redux';
+import { updateQuantity } from '../../../../state/actioncreator';
 
 
-export default function BotComp() {
+export default function BotComp(props) {
   const dispatch = useDispatch()
-  const amount = useSelector(state => state.amount)
-  const {depositMoney,withdrawMoney} = bindActionCreators(actioncreators,dispatch);
+
+
+  function increasequantity(){
+      const newincreasedquantity = props.quantity + 1
+      dispatch(updateQuantity(props.id,newincreasedquantity))
+  }
+
+  function decreasquantity(){
+    if (props.quantity !== 0){
+      const newdecresdedquantity = props.quantity - 1
+      dispatch(updateQuantity(props.id,newdecresdedquantity))
+    }
+}
 
   return (
     <div>  
         <Stack  display='flex' spacing={1} direction='row' sx = {{ border:'1px solid' , borderColor:'brown' , borderRadius:25 , height:34, width:'100%'}}>
-          <IconButton ><FaPlus size={10} color='brown' onClick={()=>{depositMoney(1)}}/></IconButton>
-            <h4 color='black'>{amount}</h4>
-            <IconButton><FaMinus  size={10} color='brown'onClick={()=>{withdrawMoney(1)}}/></IconButton> 
+          <IconButton ><FaPlus size={10} color='brown' onClick={()=>{increasequantity()}}/></IconButton>
+            <h4 color='black'>{props.quantity}</h4>
+            <IconButton><FaMinus  size={10} color='brown'onClick={()=>{decreasquantity()}}/></IconButton> 
           </Stack>       
     </div>
   )

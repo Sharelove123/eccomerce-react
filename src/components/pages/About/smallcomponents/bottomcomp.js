@@ -7,8 +7,8 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useSelector,useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {actioncreators} from '../../../../state/index';
-import { addProducttocart } from '../../../../state/actioncreator/index';
 import { showSnackbarstate } from '../../../../state/actioncreator/index';
+import { addToCart } from '../../../../state/actioncreator/index';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -17,13 +17,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export default function BotComp() {
   const dispatch = useDispatch()
-  const amount = useSelector(state => state.amount)
-  const {depositMoney,withdrawMoney} = bindActionCreators(actioncreators,dispatch);
-  const selectedProduct = useSelector((state)=>state.prodname)
-
-
-
+  const amount = useSelector(state => state.prodname.count)
+  const {increaseSelectedProductCount,decreaseSelectedProductCount} = bindActionCreators(actioncreators,dispatch);
+  const selectedProduct = useSelector((state)=>state.prodname.selectedProduct)
   const open = useSelector((state)=>state.snakbarstate)
+
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -33,9 +31,20 @@ export default function BotComp() {
   };
 
 
-  function addtocart(){
-    dispatch(addProducttocart(selectedProduct));
+
+
+
+// new cart
+
+  function addtonewcart(){
+    if (amount===0){
+      dispatch(addToCart(selectedProduct,1))
+      dispatch(showSnackbarstate(true));
+    }
+    else{
+    dispatch(addToCart(selectedProduct,amount))
     dispatch(showSnackbarstate(true));
+    }
   }
 
 
@@ -56,13 +65,13 @@ export default function BotComp() {
           </Snackbar>
             
             <Stack alignItems='center' justifyContent='center' display='flex' spacing={1} direction='row' sx = {{ border:'1px solid' , borderColor:'white' , borderRadius:25 , height:34 }}>
-              <IconButton ><FaPlus size={10} color='white' onClick={()=>{depositMoney(1)}}/></IconButton>
+              <IconButton ><FaPlus size={10} color='white' onClick={()=>{increaseSelectedProductCount(selectedProduct)}}/></IconButton>
               <h4>{amount}</h4>
-              <IconButton><FaMinus  size={10} color='white'onClick={()=>{withdrawMoney(1)}}/></IconButton> 
+              <IconButton><FaMinus  size={10} color='white'onClick={()=>{decreaseSelectedProductCount(selectedProduct)}}/></IconButton> 
             </Stack>
             
             <Box sx={{height:50, backgroundColor:'white',borderRadius:3}} alignContent='center' alignItems='center' display='flex' justifyContent='center'>
-              <h1 style={{ display:'flex',justifyContent:'center' , alignItems:'center' ,alignSelf:'center' , color:'blue' , fontWeight:600 , height:10}} onClick={addtocart}>Cart</h1>
+              <h1 style={{ display:'flex',justifyContent:'center' , alignItems:'center' ,alignSelf:'center' , color:'blue' , fontWeight:600 , height:10}} onClick={addtonewcart}>Cart</h1>
             </Box>
           </Stack>
         </Box>

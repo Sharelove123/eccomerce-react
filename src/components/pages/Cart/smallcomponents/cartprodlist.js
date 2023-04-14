@@ -5,7 +5,7 @@ import Proddetailcard from './proddetailcard';
 import { Stack } from '@mui/material';
 
 export default function Cartprodlist() {
-  const cartdata=useSelector((state)=>state.cart)
+  const cartdata=useSelector(state => state.newcart.products)
   return (
     <div>
       <List sx={{ width: '100%', bgcolor: 'background.paper'  }}>
@@ -18,7 +18,8 @@ export default function Cartprodlist() {
                     drinkname={element.drinkname}
                     size={element.size}
                     prize={element.prize}
-                    id={element.id}                
+                    id={element.id}
+                    quantity={element.quantity}              
                 />
                 <div style={{height:6}}></div>
             </Stack>
