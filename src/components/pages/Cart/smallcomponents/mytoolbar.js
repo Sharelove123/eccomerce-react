@@ -3,15 +3,28 @@ import { Stack } from '@mui/system'
 import {HiArrowNarrowLeft } from 'react-icons/hi'
 import { IconButton } from '@material-ui/core'
 import { ListItemText } from '@material-ui/core';
-import {HiOutlineBars3BottomRight} from 'react-icons/hi2';
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { removeFromCart, removefromRemoveitem } from '../../../../state/actioncreator/index';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Mytoolbar() {
   const navigate = useNavigate();
+  const dispach = useDispatch()
+  const data = useSelector((state)=>state.removeitemlist.items)
 
   function goback(){
     navigate('/about',);
+  }
+
+  function removeall(){
+      data.map((id)=>{
+        dispach(removeFromCart(id))
+      })
+      data.map((id)=>{
+        dispach(removefromRemoveitem(id))
+      })
   }
 
   return (
@@ -22,7 +35,9 @@ export default function Mytoolbar() {
           <ListItemText>Back</ListItemText>
         </Stack>
         <center style={{paddingTop:13,fontWeight:500}}>My cart</center>
-          <h6  style={{paddingTop:13,fontWeight:500}}>(Remove 3)</h6>
+          <Button variant="text" style={{paddingTop:13,fontWeight:500,height:30,borderRadius:20,marginTop:6}} onClick={removeall} >
+            (Remove {data.length})
+          </Button>
       </Stack>
     </div>
   )

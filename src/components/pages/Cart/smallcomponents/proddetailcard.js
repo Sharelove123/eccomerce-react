@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import { Box, Grid} from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
@@ -7,8 +7,8 @@ import {AiOutlineClose} from 'react-icons/ai'
 import { Stack } from '@mui/material';
 import ImgMediaCard from './mycard';
 import BotComp from './bottomcomp';
-import { removeFromCart } from '../../../../state/actioncreator/index';
-import { useDispatch } from 'react-redux';
+import { removeFromCart,addtoRemoveitem ,removefromRemoveitem} from '../../../../state/actioncreator/index';
+import { useDispatch , useSelector} from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -35,11 +35,24 @@ export default function Proddetailcard(props) {
   const labelId = `checkbox-list-label-${0}`;
   const classes = useStyles();
   const dispach = useDispatch()
+  const data = useSelector((state)=>state.removeitemlist.items)
+ // const [checked, setChecked] = React.useState(false);
 
   function removeproduct(){
     console.log('deleted...')
     dispach(removeFromCart(id))
   }
+
+  const handleCheckboxChange = (event) => {
+    //  setChecked(event.target.checked)
+      if (event.target.checked===true){
+        dispach(addtoRemoveitem(id))
+      }
+      if (event.target.checked===false){
+        dispach(removefromRemoveitem(id))
+      }
+      console.log(data)
+  };
 
   return (
     <>
@@ -48,6 +61,8 @@ export default function Proddetailcard(props) {
         <center style={{marginTop:50}}>
             <Checkbox
                 edge="start"
+            //    checked={checked}
+                onChange={handleCheckboxChange}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
@@ -64,9 +79,9 @@ export default function Proddetailcard(props) {
              
                 <Stack direction={'column'} marginLeft={-1}   justifyContent="center" marginTop={2.5} spacing={0}>
                   <h3 style={{height:20}}>{drinkname}</h3> 
-                  <h3 style={{fontWeight:350,height:30,fontSize:20}}>{size}</h3>
+                  <h3 style={{fontWeight:350,height:30,fontSize:15}}>{size}</h3>
                   <Stack justifyContent="space-between" direction="row" l>
-                    <h3 style={{width:-1}}>{prize}</h3>
+                    <h3 style={{width:-1,color:'blue'}}>{prize}</h3>
                     <BotComp 
                         quantity={quantity}
                         id={id}

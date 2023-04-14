@@ -8,6 +8,7 @@ import { updateQuantity } from '../../../../state/actioncreator';
 
 export default function BotComp(props) {
   const dispatch = useDispatch()
+  
 
 
   function increasequantity(){

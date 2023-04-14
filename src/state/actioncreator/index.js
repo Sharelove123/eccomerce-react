@@ -44,6 +44,9 @@ export const selectedProduct = (productName) => {
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+const ADD_ITEM = 'ADD_ITEM';
+const REMOVE_ITEM = 'REMOVE_ITEM';
+
 
 export function addToCart(product, quantity) {
   return {
@@ -71,6 +74,20 @@ export function updateQuantity(productId, quantity) {
       productId,
       quantity
     }
+  };
+}
+
+export function addtoRemoveitem(data){
+  return{
+    type:ADD_ITEM,
+    payload:data
+  };
+}
+
+export function removefromRemoveitem(data){
+  return{
+    type:REMOVE_ITEM,
+    payload:data
   };
 }
 

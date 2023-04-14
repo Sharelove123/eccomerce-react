@@ -1,17 +1,18 @@
 import React from 'react'
 import { Stack } from '@mui/system'
 import {HiArrowNarrowLeft } from 'react-icons/hi'
-import { IconButton } from '@material-ui/core'
+import { IconButton , Badge } from '@material-ui/core'
 import { ListItemText } from '@material-ui/core';
-import {HiOutlineBars3BottomRight} from 'react-icons/hi2';
+import {BsCart} from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showSnackbarstate } from '../../../../state/actioncreator/index';
 
 
 export default function Mytoolbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cartdata=useSelector(state => state.newcart.products)
 
   function goback(){
     navigate('/',);
@@ -30,7 +31,9 @@ export default function Mytoolbar() {
           <ListItemText>Back</ListItemText>
         </Stack>
           <IconButton onClick={gotomycart}>
-            <HiOutlineBars3BottomRight />
+            <Badge badgeContent={cartdata.length} color="primary">
+              <BsCart color='black' />
+            </Badge>
           </IconButton>
             
 
