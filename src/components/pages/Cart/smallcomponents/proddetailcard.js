@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Checkbox from '@mui/material/Checkbox';
 import { Box, Grid} from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
@@ -36,15 +36,14 @@ export default function Proddetailcard(props) {
   const classes = useStyles();
   const dispach = useDispatch()
   const data = useSelector((state)=>state.removeitemlist.items)
- // const [checked, setChecked] = React.useState(false);
 
   function removeproduct(){
     console.log('deleted...')
     dispach(removeFromCart(id))
+    dispach(removefromRemoveitem(id))
   }
 
   const handleCheckboxChange = (event) => {
-    //  setChecked(event.target.checked)
       if (event.target.checked===true){
         dispach(addtoRemoveitem(id))
       }
@@ -61,7 +60,6 @@ export default function Proddetailcard(props) {
         <center style={{marginTop:50}}>
             <Checkbox
                 edge="start"
-            //    checked={checked}
                 onChange={handleCheckboxChange}
                 tabIndex={-1}
                 disableRipple
@@ -91,8 +89,8 @@ export default function Proddetailcard(props) {
 
             </Grid>
             <Grid item xs={1}>
-            <IconButton size='10' className={classes.button} style={{backgroundColor:"#E5E5E5", display: 'flex', justifyContent: 'flex-end'}}>
-              <AiOutlineClose color='white' size={13} onClick={removeproduct}/>
+            <IconButton  onClick={removeproduct} size='10' className={classes.button} style={{backgroundColor:"#E5E5E5", display: 'flex', justifyContent: 'flex-end'}}>
+              <AiOutlineClose color='white' size={13}/>
             </IconButton>
             </Grid>
           </Grid>

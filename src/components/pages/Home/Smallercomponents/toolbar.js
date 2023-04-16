@@ -28,7 +28,7 @@ export default function MYToolbar() {
             </Stack>
             <Stack spacing={.5} direction="row" paddingLeft={7}>
                 <IconButton style={{margin:0}} onClick={gotomycart}>
-                    <Badge badgeContent={cartdata.length} color="primary">
+                    <Badge badgeContent={cartdata.length} color="primary" overlap='rectangular'>
                         <BsCart color='black' />
                     </Badge>
                 </IconButton>

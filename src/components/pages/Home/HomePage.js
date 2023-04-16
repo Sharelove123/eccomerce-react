@@ -1,14 +1,11 @@
-import { Component } from 'react';
 import * as React from 'react';
 import MYToolbar from './Smallercomponents/toolbar';
 import { Stack } from '@mui/system';
 import SearchComponent from './Smallercomponents/searchcomponent'
-import Mytab from './Smallercomponents/mytab';
+import Mytab from './Smallercomponents/tabpanel';
 
 
-export default class HomePage extends Component {
-
-  render() {
+export default function HomePage(){
     return (
         <div >
           <Stack spacing={3}>
@@ -18,6 +15,5 @@ export default class HomePage extends Component {
           </Stack>
         </div>
     );
-  }
 }
 

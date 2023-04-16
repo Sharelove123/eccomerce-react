@@ -26,9 +26,9 @@ export default function BotComp(props) {
   return (
     <div>  
         <Stack  display='flex' spacing={1} direction='row' sx = {{ border:'1px solid' , borderColor:'brown' , borderRadius:25 , height:34, width:'100%'}}>
-          <IconButton ><FaPlus size={10} color='brown' onClick={()=>{increasequantity()}}/></IconButton>
+          <IconButton onClick={()=>{increasequantity()}} ><FaPlus size={10} color='brown' /></IconButton>
             <h4 color='black'>{props.quantity}</h4>
-            <IconButton><FaMinus  size={10} color='brown'onClick={()=>{decreasquantity()}}/></IconButton> 
+            <IconButton onClick={()=>{decreasquantity()}}><FaMinus  size={10} color='brown'/></IconButton> 
           </Stack>       
     </div>
   )

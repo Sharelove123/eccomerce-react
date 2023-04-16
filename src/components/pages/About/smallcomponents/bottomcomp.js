@@ -65,9 +65,9 @@ export default function BotComp() {
           </Snackbar>
             
             <Stack alignItems='center' justifyContent='center' display='flex' spacing={1} direction='row' sx = {{ border:'1px solid' , borderColor:'white' , borderRadius:25 , height:34 }}>
-              <IconButton ><FaPlus size={10} color='white' onClick={()=>{increaseSelectedProductCount(selectedProduct)}}/></IconButton>
+              <IconButton  onClick={()=>{increaseSelectedProductCount(selectedProduct)}} ><FaPlus size={10} color='white'/></IconButton>
               <h4>{amount}</h4>
-              <IconButton><FaMinus  size={10} color='white'onClick={()=>{decreaseSelectedProductCount(selectedProduct)}}/></IconButton> 
+              <IconButton onClick={()=>{decreaseSelectedProductCount(selectedProduct)}}><FaMinus  size={10} color='white'/></IconButton> 
             </Stack>
             
             <Box sx={{height:50, backgroundColor:'white',borderRadius:3}} alignContent='center' alignItems='center' display='flex' justifyContent='center'>

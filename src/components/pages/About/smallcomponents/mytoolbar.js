@@ -31,7 +31,7 @@ export default function Mytoolbar() {
           <ListItemText>Back</ListItemText>
         </Stack>
           <IconButton onClick={gotomycart}>
-            <Badge badgeContent={cartdata.length} color="primary">
+            <Badge badgeContent={cartdata.length} color="primary" overlap='rectangular'>
               <BsCart color='black' />
             </Badge>
           </IconButton>

@@ -15,7 +15,10 @@ export default function Mytoolbar() {
   const data = useSelector((state)=>state.removeitemlist.items)
 
   function goback(){
-    navigate('/about',);
+    navigate('/about');
+    data.map((id)=>{
+      dispach(removefromRemoveitem(id))
+    })
   }
 
   function removeall(){
